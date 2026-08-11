@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>DCCB 2026 Prep — Practice, Mock Tests &amp; Daily Drills</title>
+<style>
+:root{
+  --navy:#0b2545;
+  --navy2:#13315c;
+  --gold:#c9a227;
+  --gold-light:#f4e6b8;
+  --paper:#f5f6f3;
+  --card:#ffffff;
+  --ink:#1c2430;
+  --ink-soft:#5a6472;
+  --line:#e2e5e8;
+  --good:#1b8a5a;
+  --good-bg:#e6f5ee;
+  --bad:#c0392b;
+  --bad-bg:#fbeae7;
+  --warn:#9a6b00;
+  --radius:14px;
+  --font-serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  font-family:var(--font-sans);
+  background:var(--paper);
+  color:var(--ink);
+  padding-bottom:72px;
+}
+.topbar{
+  background:var(--navy);
+  color:#fff;
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:50;
+  box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+.topbar .brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.seal{
+  width:34px;height:34px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, var(--gold-light), var(--gold) 65%, #8c6d10 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-serif);font-weight:bold;color:#3a2c00;font-size:13px;
+  border:2px solid rgba(255,255,255,.5);
+  flex:none;
+}
+.brand h1{
+  font-family:var(--font-serif);
+  font-size:17px;
+  line-height:1.15;
+  letter-spacing:.2px;
+}
+.brand .sub{
+  font-size:11px;
+  color:#c9d3e2;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+}
+.stats-chip{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.25);
+  padding:6px 12px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:600;
+  white-space:nowrap;
+}
+.wrap{
+  max-width:900px;
+  margin:0 auto;
+  padding:16px;
+}
+.view{display:none;}
+.view.active{display:block;animation:fade .2s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+/* Home */
+.home-hero{
+  background:linear-gradient(160deg, var(--navy), var(--navy2));
+  color:#fff;
+  border-radius:var(--radius);
+  padding:22px 20px;
+  margin-bottom:16px;
+  position:relative;
+  overflow:hidden;
+}
+.home-hero::after{
+  content:"";
+  position:absolute;right:-40px;top:-40px;width:160px;height:160px;
+  border-radius:50%;border:14px solid rgba(201,162,39,.18);
+}
+.home-hero h2{font-family:var(--font-serif);font-size:22px;margin-bottom:6px;}
+.home-hero p{font-size:13.5px;color:#cfd8e6;max-width:480px;line-height:1.5;}
+.honest-note{
+  margin-top:12px;font-size:12px;color:var(--gold-light);
+  border-top:1px solid rgba(255,255,255,.18);
+  padding-top:10px;
+}
+.grid-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+  margin-bottom:20px;
+}
+.action-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:16px;
+  cursor:pointer;
+  text-align:left;
+  transition:.15s;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.action-card:active{transform:scale(.98);}
+.action-card:hover{border-color:var(--gold);box-shadow:0 4px 14px rgba(11,37,69,.08);}
+.action-card .ic{font-size:22px;}
+.action-card .t{font-weight:700;font-size:14.5px;}
+.action-card .d{font-size:12px;color:var(--ink-soft);line-height:1.4;}
+
+.mini-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:20px;
+}
+.mini-stat{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px 8px;
+  text-align:center;
+}
+.mini-stat .num{font-size:19px;font-weight:700;color:var(--navy);font-family:var(--font-serif);}
+.mini-stat .lbl{font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.3px;margin-top:2px;}
+
+h3.section-title{
+  font-family:var(--font-serif);
+  font-size:16px;
+  color:var(--navy);
+  margin:22px 0 10px;
+  padding-bottom:6px;
+  border-bottom:2px solid var(--gold);
+  display:inline-block;
+}
+
+/* Filters / controls */
+.controls{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:14px;
+  margin-bottom:16px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:flex-end;
+}
+.field{display:flex;flex-direction:column;gap:4px;flex:1;min-width:120px;}
+.field label{font-size:11px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.3px;}
+select,input[type=text],input[type=search]{
+  padding:9px 10px;
+  border-radius:9px;
+  border:1px solid var(--line);
+  font-size:13.5px;
+  background:#fff;
+  color:var(--ink);
+  width:100%;
+}
+select:focus,input:focus{outline:2px solid var(--gold);outline-offset:1px;}
+.btn{
+  padding:10px 16px;
+  border-radius:9px;
+  border:1px solid var(--navy);
+  background:var(--navy);
+  color:#fff;
+  font-size:13.5px;
+  font-weight:600;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.btn:active{transform:scale(.97);}
+.btn.ghost{background:#fff;color:var(--navy);}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#3a2c00;}
+.btn.danger{background:var(--bad);border-color:var(--bad);}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;}
+
+.progress-bar-outer{
+  height:8px;background:var(--line);border-radius:5px;overflow:hidden;margin:10px 0 16px;
+}
+.progress-bar-inner{height:100%;background:var(--gold);border-radius:5px;transition:width .2s;}
+
+.qcount-note{font-size:12px;color:var(--ink-soft);margin-bottom:12px;}
+
+/* Question card */
+.qcard{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:18px;
+  margin-bottom:14px;
+}
+.qcard .qmeta{
+  display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;font-size:11px;
+}
+.tag{padding:3px 10px;border-radius:20px;font-weight:700;letter-spacing:.2px;}
+.tag.section{background:#e8eef7;color:var(--navy2);}
+.tag.topic{background:#f2f0e8;color:#6b5c1f;}
+.tag.diff-Easy{background:var(--good-bg);color:var(--good);}
+.tag.diff-Medium{background:#fff3da;color:var(--warn);}
+.tag.diff-Hard{background:var(--bad-bg);color:var(--bad);}
+.tag.diff-Previous-exam{background:#eae4f7;color:#5b3c9e;}
+.qtext{font-size:15.5px;font-weight:600;line-height:1.5;margin-bottom:14px;}
+.opts{display:flex;flex-direction:column;gap:8px;}
+.opt-btn{
+  text-align:left;
+  padding:11px 14px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#fbfbfa;
+  font-size:14px;
+  cursor:pointer;
+  transition:.12s;
+}
+.opt-btn:hover{border-color:var(--navy2);}
+.opt-btn.selected{border-color:var(--navy);background:#eef2f8;}
+.opt-btn.correct{background:var(--good-bg);border-color:var(--good);color:#0e4a30;font-weight:600;}
+.opt-btn.wrong{background:var(--bad-bg);border-color:var(--bad);color:#7a231a;font-weight:600;}
+.opt-btn:disabled{cursor:default;}
+.explain{
+  margin-top:12px;padding:12px;border-radius:10px;background:#f7f5ec;border-left:4px solid var(--gold);
+  font-size:13px;line-height:1.5;display:none;
+}
+.explain.show{display:block;}
+.qcard-footer{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
+.small-note{font-size:12px;color:var(--ink-soft);}
+
+.nav-pager{display:flex;justify-content:space-between;align-items:center;margin:16px 0 40px;gap:10px;}
+
+/* Bottom tab nav (mobile-first) */
+.tabbar{
+  position:fixed;bottom:0;left:0;right:0;
+  background:#fff;
+  border-top:1px solid var(--line);
+  display:flex;
+  z-index:60;
+  box-shadow:0 -2px 10px rgba(0,0,0,.06);
+}
+.tabbar button{
+  flex:1;background:none;border:none;padding:8px 2px 10px;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:var(--ink-soft);font-size:10.5px;cursor:pointer;font-family:var(--font-sans);
+}
+.tabbar button .ic{font-size:18px;}
+.tabbar button.active{color:var(--navy);font-weight:700;}
+.tabbar button.active .ic{color:var(--gold);}
+
+/* Mock test setup */
+.chip-select{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{
+  padding:8px 16px;border-radius:20px;border:1px solid var(--line);background:#fff;
+  font-size:13px;cursor:pointer;font-weight:600;color:var(--ink-soft);
+}
+.chip.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+.timer-badge{
+  background:var(--navy);color:#fff;padding:8px 16px;border-radius:10px;
+  font-family:var(--font-serif);font-size:17px;font-weight:700;letter-spacing:1px;
+}
+.timer-badge.low{background:var(--bad);}
+.test-header{
+  position:sticky;top:57px;z-index:40;background:var(--paper);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:14px;
+}
+
+/* Results */
+.result-seal{
+  width:110px;height:110px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, var(--gold-light), var(--gold) 60%, #7a5e0d 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  margin:0 auto 14px;border:5px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.15);
+}
+.result-seal .pct{font-family:var(--font-serif);font-size:26px;font-weight:700;color:#3a2c00;}
+.result-seal .lbl{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:#4a3a05;}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0;}
+.result-stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;}
+.result-stat .num{font-size:20px;font-weight:700;font-family:var(--font-serif);}
+.result-stat.correct .num{color:var(--good);}
+.result-stat.wrong .num{color:var(--bad);}
+.result-stat.unattempted .num{color:var(--warn);}
+.result-stat .lbl{font-size:10px;color:var(--ink-soft);text-transform:uppercase;margin-top:2px;}
+
+table.breakdown{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--line);}
+table.breakdown th,table.breakdown td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);}
+table.breakdown th{background:#f2f4f7;font-size:11px;text-transform:uppercase;color:var(--ink-soft);}
+table.breakdown tr:last-child td{border-bottom:none;}
+.acc-bar-outer{height:6px;background:var(--line);border-radius:4px;width:70px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:6px;}
+.acc-bar-inner{height:100%;background:var(--good);}
+
+.empty-state{
+  text-align:center;padding:40px 16px;color:var(--ink-soft);
+}
+.empty-state .ic{font-size:34px;margin-bottom:8px;}
+
+@media(min-width:720px){
+  .wrap{padding:24px;}
+  .tabbar{display:none;}
+  body{padding-bottom:0;}
+  .desktop-nav{display:flex;gap:6px;}
+}
+.desktop-nav{display:none;}
+.desktop-nav button{
+  background:none;border:none;color:#cfd8e6;font-size:13px;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;
+}
+.desktop-nav button.active{background:rgba(255,255,255,.14);color:#fff;}
+@media(min-width:720px){.desktop-nav{display:flex;}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="seal">DC</div>
+    <div>
+      <h1>DCCB 2026 Prep</h1>
+      <div class="sub">AP Cooperative Bank Exam Practice</div>
+    </div>
+  </div>
+  <nav class="desktop-nav" id="desktopNav"></nav>
+  <div class="stats-chip" id="topStat">0 questions</div>
+</div>
+
+<div class="wrap">
+
+  <!-- HOME -->
+  <div class="view" id="view-home">
+    <div class="home-hero">
+      <h2>Prepare for the DCCB / PACS recruitment exam</h2>
+      <p>A genuine question bank across English, Reasoning, Quantitative Aptitude, Computer Knowledge, Banking &amp; Cooperative Awareness, and General Knowledge — built for real practice, not padded numbers.</p>
+      <div class="honest-note" id="honestNote"></div>
+    </div>
+
+    <div class="mini-stats" id="homeMiniStats"></div>
+
+    <h3 class="section-title">Start practicing</h3>
+    <div class="grid-cards">
+      <button class="action-card" data-go="daily">
+        <div class="ic">🗓️</div>
+        <div class="t">Daily practice</div>
+        <div class="d">A fresh, rotating set of questions picked for today. Repeats are avoided automatically.</div>
+      </button>
+      <button class="action-card" data-go="mocksetup">
+        <div class="ic">⏱️</div>
+        <div class="t">Mock test</div>
+        <div class="d">Timed test — choose 10 to 100 questions and a time limit, then get a full result breakdown.</div>
+      </button>
+      <button class="action-card" data-go="topic">
+        <div class="ic">📚</div>
+        <div class="t">Topic practice</div>
+        <div class="d">Drill one topic at a time, filter by difficulty, and read the explanation after every answer.</div>
+      </button>
+      <button class="action-card" data-go="search">
+        <div class="ic">🔎</div>
+        <div class="t">Search questions</div>
+        <div class="d">Find questions by keyword across every topic and section.</div>
+      </button>
+      <button class="action-card" data-go="progress">
+        <div class="ic">📈</div>
+        <div class="t">Your progress</div>
+        <div class="d">Attempted, correct, wrong and accuracy — overall and topic by topic.</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- TOPIC PRACTICE -->
+  <div class="view" id="view-topic">
+    <h3 class="section-title">Topic practice</h3>
+    <div class="controls">
+      <div class="field">
+        <label>Section</label>
+        <select id="topicSection"></select>
+      </div>
+      <div class="field">
+        <label>Topic</label>
+        <select id="topicTopic"></select>
+      </div>
+      <div class="field">
+        <label>Difficulty</label>
+        <select id="topicDifficulty">
+          <option value="all">All levels</option>
+          <option>Easy</option>
+          <option>Medium</option>
+          <option>Hard</option>
+          <option>Previous-exam</option>
+        </select>
+      </div>
+      <button class="btn gold" id="topicApply">Apply</button>
+    </div>
+    <div class="qcount-note" id="topicCountNote"></div>
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="topicProgressBar" style="width:0%"></div></div>
+    <div id="topicQuestionArea"></div>
+    <div class="nav-pager">
+      <button class="btn ghost" id="topicPrev">← Previous</button>
+      <span class="small-note" id="topicPos">0 / 0</span>
+      <button class="btn ghost" id="topicNext">Next →</button>
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="view" id="view-search">
+    <h3 class="section-title">Search questions</h3>
+    <div class="controls">
+      <div class="field" style="flex:3;">
+        <label>Keyword</label>
+        <input type="search" id="searchInput" placeholder="e.g. NABARD, article, percentage...">
+      </div>
+      <button class="btn gold" id="searchBtn">Search</button>
+    </div>
+    <div class="qcount-note" id="searchCountNote"></div>
+    <div id="searchResults"></div>
+  </div>
+
+  <!-- DAILY -->
+  <div class="view" id="view-daily">
+    <h3 class="section-title">Today's practice — <span id="dailyDateLabel"></span></h3>
+    <div class="qcount-note" id="dailyCountNote"></div>
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="dailyProgressBar" style="width:0%"></div></div>
+    <div id="dailyQuestionArea"></div>
+    <div class="nav-pager">
+      <button class="btn ghost" id="dailyPrev">← Previous</button>
+      <span class="small-note" id="dailyPos">0 / 0</span>
+      <button class="btn ghost" id="dailyNext">Next →</button>
+    </div>
+  </div>
+
+  <!-- MOCK SETUP -->
+  <div class="view" id="view-mocksetup">
+    <h3 class="section-title">Set up a mock test</h3>
+    <div class="controls" style="flex-direction:column;align-items:stretch;gap:16px;">
+      <div class="field">
+        <label>Number of questions</label>
+        <div class="chip-select" id="mockCountChips">
+          <button class="chip" data-val="10">10</button>
+          <button class="chip active" data-val="20">20</button>
+          <button class="chip" data-val="30">30</button>
+          <button class="chip" data-val="50">50</button>
+          <button class="chip" data-val="100">100</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Time limit</label>
+        <div class="chip-select" id="mockTimeChips">
+          <button class="chip" data-val="10">10 min</button>
+          <button class="chip active" data-val="20">20 min</button>
+          <button class="chip" data-val="30">30 min</button>
+          <button class="chip" data-val="60">60 min</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Section (optional)</label>
+        <select id="mockSection"><option value="all">All sections</option></select>
+      </div>
+    </div>
+    <div class="qcount-note" id="mockAvailNote" style="margin-top:12px;"></div>
+    <button class="btn gold" id="mockStartBtn" style="width:100%;margin-top:6px;padding:14px;font-size:15px;">Start mock test</button>
+  </div>
+
+  <!-- MOCK RUNNING -->
+  <div class="view" id="view-mockrun">
+    <div class="test-header">
+      <span class="small-note" id="mockPos">Question 1 / 20</span>
+      <span class="timer-badge" id="mockTimer">20:00</span>
+    </div>
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="mockProgressBar" style="width:0%"></div></div>
+    <div id="mockQuestionArea"></div>
+    <div class="nav-pager">
+      <button class="btn ghost" id="mockPrev">← Previous</button>
+      <button class="btn ghost" id="mockNext">Next →</button>
+    </div>
+    <button class="btn danger" id="mockSubmitBtn" style="width:100%;margin-top:10px;padding:13px;">Submit test</button>
+  </div>
+
+  <!-- MOCK RESULT -->
+  <div class="view" id="view-mockresult">
+    <h3 class="section-title">Test result</h3>
+    <div class="result-seal">
+      <div class="pct" id="resultPct">0%</div>
+      <div class="lbl">Score</div>
+    </div>
+    <div style="text-align:center;font-size:13px;color:var(--ink-soft);margin-bottom:6px;" id="resultTimeTaken"></div>
+    <div class="result-grid">
+      <div class="result-stat correct"><div class="num" id="resultCorrect">0</div><div class="lbl">Correct</div></div>
+      <div class="result-stat wrong"><div class="num" id="resultWrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="result-stat unattempted"><div class="num" id="resultUnattempted">0</div><div class="lbl">Unattempted</div></div>
+    </div>
+
+    <h3 class="section-title">Section-wise performance</h3>
+    <div style="overflow-x:auto;"><table class="breakdown" id="sectionBreakdownTable"></table></div>
+
+    <h3 class="section-title">Topic-wise performance</h3>
+    <div style="overflow-x:auto;"><table class="breakdown" id="topicBreakdownTable"></table></div>
+
+    <h3 class="section-title">Answer key &amp; review</h3>
+    <div id="mockReviewArea"></div>
+
+    <div class="btn-row" style="margin:20px 0 40px;">
+      <button class="btn gold" id="resultBackHome">Back to home</button>
+      <button class="btn ghost" id="resultNewMock">Start another mock test</button>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="view" id="view-progress">
+    <h3 class="section-title">Your progress</h3>
+    <div class="mini-stats" id="progressMiniStats"></div>
+    <h3 class="section-title" style="font-size:14px;">Topic-wise accuracy</h3>
+    <div style="overflow-x:auto;"><table class="breakdown" id="progressTable"></table></div>
+    <div class="btn-row" style="margin:20px 0 40px;">
+      <button class="btn danger" id="resetProgressBtn">Reset all progress</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="tabbar">
+  <button data-go="home" class="active"><span class="ic">🏠</span>Home</button>
+  <button data-go="daily"><span class="ic">🗓️</span>Daily</button>
+  <button data-go="mocksetup"><span class="ic">⏱️</span>Mock</button>
+  <button data-go="topic"><span class="ic">📚</span>Topics</button>
+  <button data-go="progress"><span class="ic">📈</span>Progress</button>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
